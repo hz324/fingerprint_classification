@@ -24,7 +24,7 @@ filenames = ["/home/kube_master/mindt/fingerprint_test/classification_tensorflow
 dataset = tf.contrib.data.TFRecordDataset(filenames)
 dataset = dataset.map(_parse_function)
 dataset = dataset.shuffle(buffer_size=10000)
-dataset = dataset.batch(32)
+dataset = dataset.batch(10)
 iterator = dataset.make_initializable_iterator()
 next_element = iterator.get_next()
 #============================================================================================================
@@ -107,7 +107,7 @@ with tf.Session() as sess:
     init_op = tf.group(tf.global_variables_initializer(), tf.local_variables_initializer())
     sess.run(init_op)
     # Compute for 100 epochs.
-    for _ in range(100):
+    for _ in range(1):
         #a = 0
         sess.run(iterator.initializer)
         while True:
